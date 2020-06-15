@@ -135,7 +135,7 @@ echo '
 <table width="700" border="0" cellpadding="3" cellspacing="1" align="center">
 <tr><td>Current Path : ';
 if(isset($_GET['path'])){
-    $path = $_GET['path'];   
+    $path = urlencode($_GET['path']);   
 }else{
     $path = getcwd();
 }
