@@ -135,7 +135,7 @@ echo '
 <table width="700" border="0" cellpadding="3" cellspacing="1" align="center">
 <tr><td>Current Path : ';
 if(isset($_GET['path'])){
-    $path = urlencode($_GET['path']);   
+    $path = $_GET['path'];   
 }else{
     $path = getcwd();
 }
@@ -151,7 +151,8 @@ foreach($paths as $id=>$pat){
     if($pat == '') continue;
     echo '<a href="?path=';
     for($i=0;$i<=$id;$i++){
-        echo "$paths[$i]";
+        $paath=urlencode($paths[$i]);
+        echo "$paath";
         if($i != $id) echo "/";
     }
     echo '">'.$pat.'</a>/';
