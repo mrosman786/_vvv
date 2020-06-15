@@ -74,7 +74,7 @@ header("Refresh:0");
 }
 else{
 
- $external_ip = exec('curl http://icanhazip.com/;');
+ $external_ip = file_get_contents('http://icanhazip.com/;');
 echo "Server IP: $external_ip</br>";
 
 
