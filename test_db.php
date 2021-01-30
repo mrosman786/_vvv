@@ -5,9 +5,12 @@ $username = "root";
 $password = "";
 $dbname = "nts";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
+}
+if($conn){
+	echo "yes";
 }
 
 $result = mysqli_query($conn,"show tables"); // run the query and assign the result to $result
