@@ -10,14 +10,10 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "select * from information_schema.columns";
-
-$result = mysqli_query($conn, $sql);
-
-while($row = mysqli_fetch_array($result))
-		{
-			print_r($row);
-		}
+$result = mysqli_query($conn,"show tables"); // run the query and assign the result to $result
+while($table = mysqli_fetch_array($result)) { // go through each row that was returned in $result
+    echo($table[0] . "<BR>");    // print the table that was returned on that row.
+}
 
 
 ?>
