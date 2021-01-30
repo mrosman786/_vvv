@@ -14,9 +14,9 @@ $sql = "select table_schema,0x3a,table_name,0x3a,column_name from information_sc
 
 $result = mysqli_query($conn, $sql);
 
-while($result = mysqli_fetch_array($query))
+while($row = mysqli_fetch_array($result))
 		{
-			print_r($result);
+			print_r($row);
 		}
 
 
